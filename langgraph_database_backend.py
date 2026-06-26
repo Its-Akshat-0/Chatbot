@@ -13,6 +13,9 @@ from langgraph.checkpoint.sqlite import SqliteSaver
 load_dotenv()
 
 api_key=os.getenv("GROQ_API_KEY")
+
+if api_key is None:
+    api_key = st.secrets.get("GROQ_API_KEY")
 llm=ChatGroq(
     model="llama-3.3-70b-versatile",
     api_key=api_key
